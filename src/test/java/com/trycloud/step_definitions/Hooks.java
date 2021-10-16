@@ -10,6 +10,7 @@ import org.openqa.selenium.TakesScreenshot;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
+    //
     @Before("@ui")
     public void setUpDriver(){
         System.out.println("This is from @Before inside Hook class");
