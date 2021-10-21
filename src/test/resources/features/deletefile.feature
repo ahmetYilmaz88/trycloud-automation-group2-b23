@@ -5,7 +5,7 @@ Feature: As a user, I should be able to login to TryCloud app
     Given user Navigate to login page
 
   @wip
-  Scenario Outline: user login successfully with valid credentials
+  Scenario Outline: verify user can delete file/folder
     When user enter valid "<username>" and "password"
     And click login button
     When user clicks files module
