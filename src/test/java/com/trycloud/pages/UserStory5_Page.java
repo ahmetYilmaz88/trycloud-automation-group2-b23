@@ -18,8 +18,10 @@ public class UserStory5_Page {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-   @FindBy(css = "#user")
-   public WebElement usernameInputBox ;
+
+
+    @FindBy(css = "#user")
+    public WebElement usernameInputBox ;
 
     @FindBy(id = "password")
     public WebElement passwordInputBox ;
@@ -54,8 +56,6 @@ public class UserStory5_Page {
     }
 
 
-    //@FindBy(xpath = "(//li/a[@aria-label='Photos'])[1]")
-
 
     public void clickModules(String module){
 
@@ -70,72 +70,69 @@ public class UserStory5_Page {
 
 
 
+    @FindBy(xpath = "//*[@id='fileList']//td[2]//div//span[.='Favorited']")
+    public List<WebElement> allFavoriteFiles;
 
-    @FindBy(xpath = "//*[@id='fileList']/tr[1]/td[2]/a/span[3]/a[2]/span[1]")
-    public WebElement firstActionBtn;
-
-    @FindBy(xpath ="//*[@id='fileList']/tr[1]/td[2]/a/span[1]/span")
-    public WebElement firstFileInfo ;
-
-    @FindBy(xpath = "//*[@id='fileList']/tr[1]/td[2]/div/ul/li[3]/a/span[2]")
-    public WebElement removeFromFavorite;
-
-     public String firstFileInfo(){
-
-         String fileInfo=firstFileInfo.getText();
-
-         return fileInfo;
-     }
+    @FindBy(xpath = "//tbody/tr//td/a[@class='name']")
+    public List<WebElement> allFiles;
 
 
+    @FindBy(xpath = "//tbody/tr/td[2]/div/ul/li[3]//span[2]")
+    public WebElement favoriteBtn ;
 
     @FindBy(xpath = "//a[@class='nav-icon-favorites svg']")
-    public WebElement favoritesBtn ;
-
-     @FindBy(xpath = "//ul[@id='sublist-favorites']/li")
-     public List<WebElement> allFavoriteFiles;
+    public WebElement favoritesModule ;
 
 
 
+   /*
+    public String firstFileInfo(){
 
-     public boolean  verifyingFileRemoved(){
-         boolean result=false;
-         favoritesBtn.click();
-         BrowserUtil.waitFor(3);
-         for(WebElement eachFavoriteFile : allFavoriteFiles){
+        String fileInfo=firstFileInfo.getText();
 
-             if(eachFavoriteFile.getText().equalsIgnoreCase(firstFileInfo())){
-                 result=true;
-             }
-         }
+        return fileInfo;
+    }
+
+    public boolean  verifyingFileRemoved(){
+        boolean result=false;
+        favoritesModule.click();
+        BrowserUtil.waitFor(3);
+        for(WebElement eachFavoriteFile : allFavoriteFiles){
+
+            if(eachFavoriteFile.getText().equalsIgnoreCase(firstFileInfo())){
+                result=true;
+            }
+        }
 
         return  result;
-     }
+    }
+
+    */
 
 
 
+    @FindBy(xpath = "//div/a/span[@class='icon icon-add']")
+    public WebElement plusFileBtn;
+
+
+    @FindBy (xpath = "//input[@type='file']")
+    public WebElement uploadFileHiddenInput;
+
+
+    @FindBy(css = "#file_upload_start")
+    public WebElement uploadFile;
 
 
 
-   @FindBy(xpath = "//div/a/span[@class='icon icon-add']")
-    public WebElement addNewFileBtn;
+    public boolean VerifyFolder(String folderName){
+        boolean result=false;
+        String folder="//tr[@data-file='"+folderName+"']";
+        BrowserUtil.waitFor(4);
+        WebElement displayedFolder=Driver.getDriver().findElement(By.xpath(folder));
+        result= displayedFolder.isDisplayed();
 
-   @FindBy(xpath = "//*[@id='controls']/div[2]/div[2]/ul/li[1]/label/span[2]")
-    public WebElement uploadFileBtn ;
-
-
-   public void addingNewFile(){
-       Actions action =new Actions(Driver.getDriver());
-       String filePath="/Users/feruzajonzokova/Desktop/Background_Pictures/background2.webp";
-
-       addNewFileBtn.click();
-       BrowserUtil.waitFor(2);
-       action.click(uploadFileBtn).pause(2000).sendKeys(filePath).perform();
-       BrowserUtil.waitFor(5);
-
-
-
-   }
+        return result;
+    }
 
 
 
