@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Hooks {
     //
-    @Before
+    @Before("@ui")
     public void setUpDriver(){
         Driver.getDriver().manage().window().maximize();
         System.out.println("This is from @Before inside Hook class");
@@ -21,7 +21,7 @@ public class Hooks {
 
 
 
-    @After
+    @After("@ui")
     public void tearDown(Scenario scenario){
         System.out.println("THIS IS FROM @After inside Hooks class");
 
