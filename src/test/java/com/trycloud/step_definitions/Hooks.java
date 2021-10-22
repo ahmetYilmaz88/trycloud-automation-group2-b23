@@ -19,8 +19,6 @@ public class Hooks {
         Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-
-
     @After("@ui")
     public void tearDown(Scenario scenario){
         System.out.println("THIS IS FROM @After inside Hooks class");

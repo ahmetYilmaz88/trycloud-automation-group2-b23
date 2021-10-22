@@ -19,7 +19,7 @@ public class UserStory4_ByAteeq_StepDef {
     List<String> actualText;
     List<String> expectedText;
 
-    @Given("I login as a user")
+    @Given("I login as a user5")
     public void i_login_as_a_user() {
 
         files.goTo();
