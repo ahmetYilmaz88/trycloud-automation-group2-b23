@@ -36,7 +36,7 @@ public class LoginPage {
 
     public void enterCredentials(String username, String password){
         usernameInput.sendKeys(username);
-        passwordInput.sendKeys(ConfigReader.read(password));
+        passwordInput.sendKeys(ConfigReader.read("password"));
 
     }
 

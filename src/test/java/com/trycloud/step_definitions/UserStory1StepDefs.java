@@ -21,6 +21,7 @@ public class UserStory1StepDefs {
 
     @When("user enter valid {string} and {string}")
     public void userEnterValidAnd(String username, String password) {
+
         loginPage.enterCredentials(username,password);
     }
 
