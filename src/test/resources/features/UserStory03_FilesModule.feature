@@ -5,7 +5,7 @@
     Scenario: Users can access to Files module
       Given user is at the dashboard page
       When  user click the files module
-      Then  page title should be “Files - Trycloud”
+      Then  page title should be "Files - Trycloud"
 
      #AC2
     Scenario: Users can select all uploaded files from the page
