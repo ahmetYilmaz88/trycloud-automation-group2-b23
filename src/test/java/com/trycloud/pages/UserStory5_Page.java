@@ -55,7 +55,7 @@ public class UserStory5_Page {
 
 
     //@FindBy(xpath = "(//li/a[@aria-label='Photos'])[1]")
-
+   //more bla bla
 
     public void clickModules(String module){
 
