@@ -12,3 +12,4 @@
       Given user is at the Trycloud page
       When user click the checkbox of the table
       Then all the files should be selected
+//
