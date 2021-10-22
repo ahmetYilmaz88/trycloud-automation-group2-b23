@@ -2,13 +2,16 @@ package com.trycloud.utility;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BrowserUtil {
 
@@ -38,6 +41,7 @@ public class BrowserUtil {
      */
     public static List<String> getElementsText(List<WebElement> list) {
         List<String> elemTexts = new ArrayList<>();
+        
         for (WebElement el : list) {
             elemTexts.add(el.getText());
         }
@@ -177,6 +181,36 @@ public class BrowserUtil {
         return flag;
     }
 
+    public static void hover(WebElement element) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(element).perform();
+    }
 
+
+
+
+    public  static Map<String ,String> createMapFromTwoListsOfWebElements(List<WebElement> keys, List<WebElement> values){
+        //create a map:
+        // key as column name,
+        // value as cell value
+
+        Map<String,String> rowMap = new LinkedHashMap<>();// map to put keys and values
+
+        //how to get all header as key
+        List<String> allHeaders = getElementsText(keys);// List<String> headers
+
+        //how to get all first row and use it as value
+        List<String> allFirstRow = getElementsText(values);
+
+        //Grab first header and use it as key , get first row data and use it as value
+
+
+        for (int columnIndex =0;columnIndex<allHeaders.size();columnIndex++ )
+            //go through each column and add column header as key, and cell value as value
+            rowMap.put(allHeaders.get(columnIndex), allFirstRow.get(columnIndex));
+
+        return rowMap;
+    }
+    
 
 }
