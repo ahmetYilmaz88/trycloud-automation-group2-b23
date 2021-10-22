@@ -6,12 +6,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrowserUtil {
+import static org.junit.Assert.assertEquals;
 
+public class BrowserUtil {
 
     /**
      * Switches to new window by the exact title. Returns to original window if target title not found
@@ -29,7 +29,6 @@ public class BrowserUtil {
         Driver.getDriver().switchTo().window(origin);
     }
 
-
     /**
      * return a list of string from a list of elements
      *
@@ -44,7 +43,6 @@ public class BrowserUtil {
         return elemTexts;
     }
 
-
     /**
      * Performs a pause
      *
@@ -58,7 +56,6 @@ public class BrowserUtil {
         }
     }
 
-
     /**
      * Waits for element matching the locator to be visible on the page
      *
@@ -71,10 +68,6 @@ public class BrowserUtil {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-
-
-
-
     /**
      * Scrolls down to an element using JavaScript
      *
@@ -83,8 +76,6 @@ public class BrowserUtil {
     public static void scrollToElement(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
     }
-
-
 
     /**
      * Selects with visibleText
@@ -123,7 +114,6 @@ public class BrowserUtil {
      */
     public static boolean waitForElementIsNotLocated(WebElement element) {
 
-
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 5);
 
         try {
@@ -152,23 +142,16 @@ public class BrowserUtil {
     public static boolean getIsCheck(List<WebElement> allCheckboxes,WebElement nextButton){
 
         boolean flag=true;
-
         String str="";
 
         do{
-
             str= Driver.getDriver().getCurrentUrl();
-
-
             for (WebElement checkbox : allCheckboxes) {
                 if(!checkbox.isSelected()) {
                     flag = false;
                     break  ;
                 }
             }
-
-
-
             nextButton.click();
             BrowserUtil.waitFor(2);
 
@@ -176,7 +159,4 @@ public class BrowserUtil {
 
         return flag;
     }
-
-
-
 }
