@@ -1,4 +1,5 @@
 package com.trycloud.step_definitions;
+import com.trycloud.utility.ConfigReader;
 import com.trycloud.utility.Driver;
 import com.trycloud.utility.Driver;
 import io.cucumber.java.After;
@@ -13,16 +14,15 @@ public class Hooks {
     //
     @Before("@ui")
     public void setUpDriver(){
-        System.out.println("This is from @Before inside Hook class");
+       // System.out.println("This is from @Before inside Hook class");
         // set up implicit wait
         Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Driver.getDriver().get(ConfigReader.read("url"));
     }
-
-
 
     @After("@ui")
     public void tearDown(Scenario scenario){
-        System.out.println("THIS IS FROM @After inside Hooks class");
+       // System.out.println("THIS IS FROM @After inside Hooks class");
 
         if(scenario.isFailed()){
             TakesScreenshot ts = (TakesScreenshot) Driver.getDriver() ;
