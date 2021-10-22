@@ -25,8 +25,8 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt" ,  // store the failed scenario into rerun.txt
                 "me.jvt.cucumber.report.PrettyReports:target"  // fancy report
         } ,
-        dryRun = false
-        ,tags = "@bahce"
-)
+        dryRun = false,
+        tags="@ui or @wip"
+           )
 public class TestRunner {
 }
