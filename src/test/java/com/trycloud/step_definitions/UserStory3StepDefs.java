@@ -11,14 +11,13 @@ import static org.junit.Assert.assertTrue;
 
 public class UserStory3StepDefs {
 
-
     UserStory03Page userStory03Page = new UserStory03Page();
 
     @Given("user is at the dashboard page")
     public void user_is_at_the_dashboard_page() {
         userStory03Page.goTo();
-        userStory03Page.enterCredentials("User32", "Userpass123");
-        userStory03Page.login();
+        userStory03Page.enterTheCredential("User32","Userpass123");
+        userStory03Page.loginUS3();
     }
 
     @When("user click the files module")
@@ -39,8 +38,8 @@ public class UserStory3StepDefs {
     @Given("user is at the Trycloud page")
     public void user_is_at_the_trycloud_page() {
         userStory03Page.goTo();
-        userStory03Page.enterCredentials("User32", "Userpass123");
-        userStory03Page.login();
+        userStory03Page.enterTheCredential("User32", "Userpass123");
+        userStory03Page.loginUS3();
         userStory03Page.clickFiles();
         BrowserUtil.waitFor(3);
     }
