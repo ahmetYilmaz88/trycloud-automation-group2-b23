@@ -24,7 +24,7 @@ public class Hooks {
 
     @After("@ui")
     public void tearDown(Scenario scenario){
-       // System.out.println("THIS IS FROM @After inside Hooks class");
+        System.out.println("THIS IS FROM @After inside Hooks class");
 
         if(scenario.isFailed()){
             TakesScreenshot ts = (TakesScreenshot) Driver.getDriver() ;

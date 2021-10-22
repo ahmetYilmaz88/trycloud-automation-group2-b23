@@ -10,8 +10,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class UserStory5_StepDef {
 
@@ -51,10 +50,12 @@ public class UserStory5_StepDef {
 
         beforeFavNumbers= userPage.allFavoriteFiles.size();
         BrowserUtil.waitFor(2);
-        int random =BrowserUtil.randomNumber(1,userPage.allFavoriteFiles.size());
+        int random =BrowserUtil.randomNumber(2,userPage.allFavoriteFiles.size());
        // System.out.println(userPage.allFavoriteFiles.size());
-        WebElement sixActionBtn=Driver.getDriver().findElement(By.xpath("//tbody/tr["+random+"]/td[2]/a//span[2]/a[@data-action='menu']"));
-
+        WebElement sixActionBtn=Driver.getDriver().findElement(By.xpath("(//span[@class='icon icon-more'])["+random+"]"));
+         if(userPage.allFavoriteFiles.size()==0){
+             throw new RuntimeException("There should be at least one favorite file to remove");
+         }
         sixActionBtn.click();
         BrowserUtil.waitFor(3);
 
@@ -88,7 +89,7 @@ public class UserStory5_StepDef {
     @When("user click {string} icon on the top")
     public void user_click_icon_on_the_top(String string) {
         userPage.plusFileBtn.click();
-        BrowserUtil.waitFor(2);
+        BrowserUtil.waitFor(3);
 
     }
 
@@ -103,6 +104,14 @@ public class UserStory5_StepDef {
 
         BrowserUtil.waitFor(4);
         userPage.uploadFile.sendKeys(filePath);
+        BrowserUtil.waitFor(2);
+
+        if(userPage.fileConflict.isDisplayed()){
+            BrowserUtil.waitFor(2);
+           userPage.newFileCheckBox.click();
+           BrowserUtil.waitFor(2);
+           userPage.continueBtn.click();
+        }
         BrowserUtil.waitFor(5);
 
     }

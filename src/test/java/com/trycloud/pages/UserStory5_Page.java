@@ -9,6 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserStory5_Page {
@@ -122,6 +123,19 @@ public class UserStory5_Page {
     @FindBy(css = "#file_upload_start")
     public WebElement uploadFile;
 
+    @FindBy(xpath = "//div/h2[@class='oc-dialog-title']")
+    public WebElement fileConflict;
+
+    @FindBy(css = "[for='checkbox-allnewfiles']")
+    public WebElement newFileCheckBox ;
+
+    @FindBy(xpath = "//*[@id=\"body-user\"]/div[9]/div[2]/button[2]")
+    public WebElement continueBtn;
+
+
+
+
+
 
 
     public boolean VerifyFolder(String folderName){
@@ -133,6 +147,9 @@ public class UserStory5_Page {
 
         return result;
     }
+
+
+
 
 
 
