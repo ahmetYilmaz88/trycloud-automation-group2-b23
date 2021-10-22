@@ -3,14 +3,18 @@ package com.trycloud.pages;
 import com.trycloud.utility.BrowserUtil;
 import com.trycloud.utility.ConfigReader;
 import com.trycloud.utility.Driver;
+import io.cucumber.java.bs.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+import java.util.List;
+
+public class UserStory03Page {
 
     @FindBy(xpath = "//input[@id='user']")
     public WebElement usernameInput;
@@ -21,10 +25,19 @@ public class LoginPage {
     @FindBy(xpath = "//input[@id='submit-form']")
     public WebElement loginBtn;
 
-    @FindBy(xpath = "//div/input[@value='Logging in ...']")
-    public WebElement loaderMask;
+    @FindBy(xpath = "//li[@data-id='files']")
+    public WebElement filesButton;
 
-    public LoginPage(){
+    @FindBy(xpath = "//label[@for='select_all_files']")
+    public WebElement allCheckBox;
+
+    @FindBy(xpath = " //tr[contains(@class,'selected')]")
+    public List<WebElement> allCheckBoxChecked;
+
+
+
+
+    public UserStory03Page(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -33,7 +46,10 @@ public class LoginPage {
     }
 
     public void enterCredentials(String username, String password){
+        usernameInput.click();
         usernameInput.sendKeys(username);
+        BrowserUtil.waitFor(2);
+        passwordInput.click();
         passwordInput.sendKeys(password);
 
     }
@@ -41,11 +57,52 @@ public class LoginPage {
     public void login(){
 
         loginBtn.click();
-        BrowserUtil.waitFor(40);
+        BrowserUtil.waitFor(3);
     }
 
     public static WebElement waitForVisibility(By locator, int timeout) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
+    public void clickFiles(){
+        filesButton.click();
+    }
+
+    public String getTitle(){
+      return   Driver.getDriver().getTitle();
+   }
+
+    public void checkAllCheckBoxes(){
+
+        allCheckBox.click();
+
+
+   }
+
+    public  boolean getIsCheck(){
+
+        boolean result=true;
+
+        for (WebElement eachBox : allCheckBoxChecked) {
+            if(!eachBox.isDisplayed()){
+                BrowserUtil.waitFor(2);
+                result = false;
+            }
+
+        }
+
+        return result;
+    }
+
+
+
 }
+
+
+
+
+
+
+
+
