@@ -10,6 +10,8 @@ import io.cucumber.java.en.When;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
 
 public class UserStory4_ByAteeq_StepDef {
 
@@ -64,14 +66,11 @@ public class UserStory4_ByAteeq_StepDef {
 
 
         for (String eachFile : expectedText) {
-            if( actualText.get(0).equals( eachFile) || actualText.get(1).equals(eachFile) ){
-                System.out.println("Passed: The file successfully added to favorite list");
-                break;
-            }else {
-                System.out.println("failed: actual text does not match expected text");
-            }
-        }
+            assertTrue( actualText.get(0).equals( eachFile) || actualText.get(1).equals(eachFile) );
 
+
+        }
+        System.out.println("User Story 4 Passed!");
     }
 
 }

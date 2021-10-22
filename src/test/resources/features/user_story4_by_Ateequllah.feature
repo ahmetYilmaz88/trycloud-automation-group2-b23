@@ -1,4 +1,4 @@
-@ui
+@ui @files
 Feature: Files Module should work as expected
 
   As a user, I should be able to access to Files module
