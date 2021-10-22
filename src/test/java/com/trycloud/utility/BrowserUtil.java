@@ -32,6 +32,9 @@ public class BrowserUtil {
     }
 
 
+
+
+
     /**
      * return a list of string from a list of elements
      *
@@ -152,6 +155,7 @@ public class BrowserUtil {
         return new Faker().number().numberBetween(a, b);
     }
 
+
     public static boolean getIsCheck(List<WebElement> allCheckboxes,WebElement nextButton){
 
         boolean flag=true;
@@ -203,6 +207,9 @@ public class BrowserUtil {
 
         return rowMap;
     }
+
+
+
     
 
 }
