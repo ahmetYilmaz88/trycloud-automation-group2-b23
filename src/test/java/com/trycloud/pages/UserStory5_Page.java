@@ -36,13 +36,13 @@ public class UserStory5_Page {
     public void login(String userType){
 
         if(userType.equalsIgnoreCase("User2")){
-            usernameInputBox.sendKeys(ConfigReader.read("userName1"));
+            usernameInputBox.sendKeys(ConfigReader.read("username1"));
         }else if(userType.equalsIgnoreCase("User32")){
-            usernameInputBox.sendKeys(ConfigReader.read("userName2"));
+            usernameInputBox.sendKeys(ConfigReader.read("username2"));
         }else if(userType.equalsIgnoreCase("User62")){
-            usernameInputBox.sendKeys(ConfigReader.read("userName3"));
+            usernameInputBox.sendKeys(ConfigReader.read("username3"));
         }else{//usertype==User92
-            usernameInputBox.sendKeys(ConfigReader.read("userName4"));
+            usernameInputBox.sendKeys(ConfigReader.read("username4"));
         }
 
         BrowserUtil.waitFor(2);
@@ -92,10 +92,14 @@ public class UserStory5_Page {
     @FindBy(xpath = "//a[@class='nav-icon-favorites svg']")
     public WebElement favoritesBtn ;
 
+    @FindBy(xpath = "//tbody/tr/td[2]/div/ul/li[3]//span[2]")
+    public WebElement favoriteBtn ;
+
      @FindBy(xpath = "//ul[@id='sublist-favorites']/li")
      public List<WebElement> allFavoriteFiles;
 
-
+    @FindBy(xpath = "//a[@class='nav-icon-favorites svg']")
+    public WebElement favoritesModule ;
 
 
      public boolean  verifyingFileRemoved(){
@@ -115,27 +119,41 @@ public class UserStory5_Page {
 
 
 
+    @FindBy(xpath = "//div/a/span[@class='icon icon-add']")
+    public WebElement plusFileBtn;
 
 
-   @FindBy(xpath = "//div/a/span[@class='icon icon-add']")
-    public WebElement addNewFileBtn;
-
-   @FindBy(xpath = "//*[@id='controls']/div[2]/div[2]/ul/li[1]/label/span[2]")
-    public WebElement uploadFileBtn ;
+    @FindBy (xpath = "//input[@type='file']")
+    public WebElement uploadFileHiddenInput;
 
 
-   public void addingNewFile(){
-       Actions action =new Actions(Driver.getDriver());
-       String filePath="/Users/feruzajonzokova/Desktop/Background_Pictures/background2.webp";
-
-       addNewFileBtn.click();
-       BrowserUtil.waitFor(2);
-       action.click(uploadFileBtn).pause(2000).sendKeys(filePath).perform();
-       BrowserUtil.waitFor(5);
+    @FindBy(css = "#file_upload_start")
+    public WebElement uploadFile;
 
 
+    @FindBy(xpath = "//div/h2[@class='oc-dialog-title']")
+    public WebElement fileConflict;
 
-   }
+    @FindBy(css = "[for='checkbox-allnewfiles']")
+    public WebElement newFileCheckBox ;
+
+    @FindBy(xpath = "//*[@id=\"body-user\"]/div[9]/div[2]/button[2]")
+    public WebElement continueBtn;
+
+
+    public boolean VerifyFolder(String folderName){
+        boolean result=false;
+        String folder="//tr[@data-file='"+folderName+"']";
+        BrowserUtil.waitFor(4);
+        WebElement displayedFolder=Driver.getDriver().findElement(By.xpath(folder));
+        result= displayedFolder.isDisplayed();
+
+        return result;
+    }
+
+
+
+
 
 
 
